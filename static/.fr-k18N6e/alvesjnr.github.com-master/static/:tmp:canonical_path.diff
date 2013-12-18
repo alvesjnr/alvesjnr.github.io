@@ -1,0 +1,35 @@
+diff -r 1bdca2bcba6d Modules/getpath.c
+--- a/Modules/getpath.c	Wed Feb 22 11:53:09 2012 +0200
++++ b/Modules/getpath.c	Wed Feb 22 17:33:35 2012 +0100
+@@ -248,6 +248,23 @@
+     }
+ }
+ 
++/*  canonicalize_path() removes double dots from path, letting it be the canonical path 
++*/
++static void
++canonicalize_path(wchar_t *path){
++    size_t k,n = 0;
++    while (path[n] != L'\0'){
++        if (path[n] == '.' && path[n+1] == '.'){
++            k = n-2;
++            while (path[k] != SEP)
++                k--;
++            wcscpy(path+k, path+n+2);
++            n = k;
++        }
++        n++;
++    }
++}
++
+ /* absolutize() requires that path be allocated at least MAXPATHLEN+1 bytes. */
+ static void
+ absolutize(wchar_t *path)
+@@ -257,6 +274,7 @@
+     if (path[0] == SEP)
+         return;
+     copy_absolute(buffer, path, MAXPATHLEN+1);
++    canonicalize_path(buffer);
+     wcscpy(path, buffer);
+ }
+ 
