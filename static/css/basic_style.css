@@ -1,0 +1,133 @@
+
+body         { font-family: 'Georgia', serif; font-size: 17px; color: #000;} 
+
+a            { color: #004B6B; 
+           text-decoration:none;}
+a:hover      { color: #6D4100; }
+
+img { max-width:640px; }
+
+.blog-title a{
+
+ font-family: 'Georgia', serif; color: #000;} 
+
+.post-title a{
+ font-family: 'Georgia', serif; color: #000;} 
+
+#sidebar {
+    border-left: 1px solid #999999;
+    float: left;
+    font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    margin: 0 0 0 20px;
+    padding: 0 0 10px 10px;
+    width: 180px;
+}
+#sidebar h3 {
+    font-size: 14px;
+    margin: 20px 0 5px;
+}
+#sidebar a {
+    border-bottom: 1px solid #CCCCCC;
+    color: #222222;
+    text-decoration: none;
+}
+#sidebar a:hover {
+    border-bottom: 1px solid #777777;
+    color: #222222;
+    text-decoration: none;
+}
+#sidebar ul {
+    list-style: none outside none;
+}
+#sidebar ul ul {
+    margin: 5px 0 0 10px;
+}
+#sidebar ul ul ul {
+    margin: 5px 0 0 10px;
+}
+#sidebar ul li {
+    padding: 0 0 5px;
+}
+
+#pages {
+    margin: 0 0 10px;
+}
+#pages a {
+    color: #004276;
+    text-decoration: underline;
+}
+#pages a:hover {
+    color: #2B9CCE;
+    text-decoration: underline;
+}
+
+#posts {
+    float: left;
+    padding: 0 0 0 10px;
+    width: 720px;
+}
+#posts h1 { 
+    margin: 0 0 10px 0;
+    padding-top: 60px;
+}
+#posts h2 {
+    font-size: 22px;
+    font-weight: normal;
+    margin: 0 0 15px;
+}
+#posts h2 a {
+    color: #222222;
+    text-decoration: none;
+}
+#posts h2 a:hover {
+    border-bottom: 1px solid #777777;
+    color: #222222;
+    text-decoration: none;
+}
+#posts h3, #posts h4 {
+    margin-bottom: 0.5em;
+}
+
+.meta-author {
+    background-color: #333333;
+    color: #EEEEEE;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 11px;
+    /*margin: 0 0 10px;*/
+    padding: 4px 6px;
+}
+.meta-author a {
+    color: #EEEEEE;
+    font-weight: bold;
+    text-decoration: none;
+}
+.meta-author a:hover {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.postbody {
+    padding: 20px 0px 100px 0px;
+}
+
+#footer {
+    float: bottom;
+    background-color: #333333;
+    border-top: 1px solid #999999;
+    color: #EEEEEE;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 11px;
+    margin: 20px auto 0;
+    padding: 10px 0;
+    text-align: center;
+}
+#footer a {
+    color: #EEEEEE;
+    font-weight: bold;
+    text-decoration: none;
+}
+#footer a:hover {
+    color: #FFFFFF;
+    text-decoration: none;
+}
