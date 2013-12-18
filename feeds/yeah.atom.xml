@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My Blog, My Rules.</title><link href="http://alvesjnr.github.io/" rel="alternate"></link><link href="http://alvesjnr.github.io/feeds/yeah.atom.xml" rel="self"></link><id>http://alvesjnr.github.io/</id><updated>2013-12-18T10:20:00+01:00</updated><entry><title>How Does a Spirograph Work</title><link href="http://alvesjnr.github.io/my-super-post.html" rel="alternate"></link><updated>2013-12-18T10:20:00+01:00</updated><author><name>Antonio Ribeiro</name></author><id>tag:alvesjnr.github.io,2013-12-18:my-super-post.html</id><summary type="html">&lt;p&gt;Some of you shall ask yourselves: "How does a spirograph work?". But I'm sure that most of you would ask me: "What the wacko is an spirograph?"&lt;/p&gt;
+&lt;p&gt;An spirograph is a toy used to draw "weird spirals" using two circles (one inside other). For whom doesn't remember, the toy is these one:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Espirografo" src="https://github.com/alvesjnr/alvesjnr.github.com/raw/master/static/spirograph_01.jpg" title="Espirografo" /&gt;&lt;/p&gt;
+&lt;p&gt;The way that this toy works is simples: One gear spins inside a big circle (also with gears!). The pen is placed in a hole of the gear. When you spin the gear through the major circle, the pen follows tho different movements: An circle movement made by the gear around the center of the great circle (let's call this point as O) and a movement made by the pen around the center of the gear (let's call the center of the gear as C and the point where the pen is placed as P). As the center of the gear is moving, the result position of the point P is the sum of these two movements: P over C plus C over O.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="desenhos muito doidos de São Tomé" src="https://github.com/alvesjnr/alvesjnr.github.com/raw/master/static/spirograph_02.jpg" title="desenhos muito doidos de São Tomé" /&gt;&lt;/p&gt;
+&lt;p&gt;But what we want at this point is: how to reproduce these traces? How can we parametrize the equation that give us the point P(x,y) as the gear spins. You must not believe at this moment, but these equations are pretty easy to find.&lt;/p&gt;
+&lt;p&gt;First of all let's define some things. As I'm not a mathematician (nor sick) let's put the center of our circle in the origin of our coordinates system. Let's call the center of the circle as O (origin). Let's also call as R the radius of this circle.&lt;/p&gt;
+&lt;p&gt;The gear has two important parameters: it's radius (which will be called r) and the radius of the trace, that is, the distance between the center of the gear and the point where the pen will be placed. Let's call this radius as r'. The center of this gear will be called C. And the point where the pen is placed will be called P.&lt;/p&gt;
+&lt;p&gt;Just one more definition: let's assume that the gear translate on the counterclockwise way.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="KmPlot" src="https://github.com/alvesjnr/alvesjnr.github.com/raw/master/static/espirografo_define.png" title="blah" /&gt;&lt;/p&gt;
+&lt;h2&gt;Part I - Parameterization of the position of the point C&lt;/h2&gt;
+&lt;p&gt;Once we start to trace our spiral, we move the gear counterclockwise. What we want to get at this point is the coordinates of the point C (center of the gear) over the angle theta.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="C" src="https://github.com/alvesjnr/alvesjnr.github.com/raw/master/static/espirografo_C.png" title="blah" /&gt;&lt;/p&gt;
+&lt;p&gt;Letting (R-r) be the distance between the origin O and the center of the gear, we get:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="equ_C" src="https://github.com/alvesjnr/alvesjnr.github.com/raw/master/static/equ_c.gif" title="blah" /&gt;&lt;/p&gt;
+&lt;p&gt;And here we've just got the position (x,y) of a point of the spiral for each angle theta of our system.&lt;/p&gt;
+&lt;h2&gt;Part II - Parametrization of the pint P over the point C&lt;/h2&gt;
+&lt;p&gt;Now that we already have the equations of the point C, let's look for the position of the point P over the point C. Again let's draw to easily see the equation:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="equ_Pc" src="https://github.com/alvesjnr/alvesjnr.github.com/raw/master/static/espirografo_Pc.png" title="blah" /&gt;&lt;/p&gt;
+&lt;p&gt;Look that when we move our gear counterclockwise (increase theta) this same gear spins (around itself) clockwise (phi decreases). It give us:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="equ_Pc" src="https://github.com/alvesjnr/alvesjnr.github.com/raw/master/static/equ_pc.gif" title="blah" /&gt;&lt;/p&gt;
+&lt;p&gt;The minus sign on equation y is given just because the gear spins clockwise. To better see what is heppen, let's take this initial position:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="equ_Pc" src="https://github.com/alvesjnr/alvesjnr.github.com/raw/master/static/rodando.png" title="blah" /&gt;&lt;/p&gt;
+&lt;p&gt;In this case we have thata=0 and phi=0. As soon as we start to move the gear clockwise through the big circle (increase theta), the point P will decrease on the y axe over the point C. That is why the value of y in this equation have the minus sign.&lt;/p&gt;
+&lt;h2&gt;Part III - Summing the values&lt;/h2&gt;
+&lt;p&gt;Now that we have C over O and P over C, let's sum these equations and get P over O:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="equ_Pc" src="https://github.com/alvesjnr/alvesjnr.github.com/raw/master/static/equ_p_theta_phi.gif" title="blah" /&gt;&lt;/p&gt;
+&lt;p&gt;Look that our parametric function has two variables: theta and phi. But there is an correlation about those two values.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="equ_Pc" src="https://github.com/alvesjnr/alvesjnr.github.com/raw/master/static/thetaphi.gif" title="blah" /&gt;&lt;/p&gt;
+&lt;p&gt;What give us:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="equ_Pc" src="https://github.com/alvesjnr/alvesjnr.github.com/raw/master/static/equ_p_theta_phi.gif" title="blah" /&gt;&lt;/p&gt;
+&lt;p&gt;When we substitute the value of phi in the position equation we get:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="equ_Pc" src="https://github.com/alvesjnr/alvesjnr.github.com/raw/master/static/equ_P_final.gif" title="blah" /&gt;&lt;/p&gt;
+&lt;p&gt;And finally with just one variable (theta) and three parameters (R, r and r') we have an equation of the spirograph&lt;/p&gt;
+&lt;p&gt;Below is provided a Python script that draws the spiral by those parameters. The function that generates the point can accept also two extra parameters:&lt;/p&gt;
+&lt;p&gt;spins -&amp;gt; how many complete turns the gear will do
+resolution -&amp;gt; how much is the increment of the angle phi for each point&lt;/p&gt;
+&lt;p&gt;To run this script you must have matplotlip installed in your computer&lt;/p&gt;
+&lt;p&gt;We can also plot the trace of an spirograph using any graphical software that accept parametric equations. Here we have one example using KmPlot on Ubuntu Linux:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="KmPlot" src="https://github.com/alvesjnr/alvesjnr.github.com/raw/master/static/kmplot.png" title="KmPlot" /&gt;
+Parâmetros: 
+&lt;em&gt;R&lt;/em&gt;: 5
+&lt;em&gt;r&lt;/em&gt;: 1.1
+&lt;em&gt;r'&lt;/em&gt;: 1
+theta: variando de 0 a 2&lt;em&gt;pi&lt;/em&gt;10 (10 voltas complestas)&lt;/p&gt;
+&lt;p&gt;Some examples using the Python script:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Python" src="https://github.com/alvesjnr/alvesjnr.github.com/raw/master/static/espirapy_1.png" title="Python" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Python" src="https://github.com/alvesjnr/alvesjnr.github.com/raw/master/static/espirapy_2.png" title="Python" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://gist.github.com/1948754#file_spirograph.py"&gt;Python Source Code&lt;/a&gt;&lt;/p&gt;</summary><category term="thats"></category><category term="awesome"></category></entry></feed>
