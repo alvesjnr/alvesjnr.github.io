@@ -7,7 +7,7 @@ SITENAME = u'My Blog, My Rules.'
 SITEURL = 'http://alvesjnr.github.io'
 
 TIMEZONE = 'Europe/Paris'
-
+THEME = 'templates/more_simple/templates'
 DEFAULT_LANG = u'en'
 
 # Feed generation is usually not desired when developing
