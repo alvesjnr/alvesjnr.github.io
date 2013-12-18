@@ -1,10 +1,10 @@
 Title: How Does a Spirograph Work
 Date: 2013-12-18 10:20
-Tags: thats, awesome
-Category: yeah
-Slug: my-super-post
+Tags: parametric, math, toys
+Category: Math
+Slug: how-does-spirograph-work
 Author: Antonio Ribeiro
-Summary: Short version for index and feeds
+Summary: Playing with functions parametrization to plot the behaviour of a spirograph.
 
 
 Some of you shall ask yourselves: "How does a spirograph work?". But I'm sure that most of you would ask me: "What the wacko is an spirograph?"
