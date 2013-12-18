@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>My Blog, My Rules. - Antonio Ribeiro</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">My Blog, My Rules. </a></h1>
+                <nav><ul>
+                    <li><a href="/category/yeah.html">yeah</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="/my-super-post.html">How Does a Spirograph Work</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2013-12-18T10:20:00">
+                Wed 18 December 2013
+        </abbr>
+
+        <address class="vcard author">
+                By <a class="url fn" href="/author/antonio-ribeiro.html">Antonio Ribeiro</a>
+        </address>
+<p>In <a href="/category/yeah.html">yeah</a>. </p>
+<p>tags: <a href="/tag/thats.html">thats</a><a href="/tag/awesome.html">awesome</a></p>
+</footer><!-- /.post-info --><p>Some of you shall ask yourselves: "How does a spirograph work?". But I'm sure that most of you would ask me: "What the wacko is an spirograph?"</p>
+<p>An spirograph is a toy used to draw "weird spirals" using two circles (one inside other). For whom doesn't remember, the toy is these one:</p>
+<p><img alt="Espirografo" src="https://github.com/alvesjnr/alvesjnr.github.com/raw/master/static/spirograph_01.jpg" title="Espirografo" /></p>
+<p>The way that this toy works is simples: One gear spins inside a big circle (also with gears!). The pen is placed in a hole of the gear. When you spin the gear through the major circle, the pen follows tho different movements: An circle movement made by the gear around the center of the great circle (let's call this point as O) and a movement made by the pen around the center of the gear (let's call the center of the gear as C and the point where the pen is placed as P). As the center of the gear is moving, the result position of the point P is the sum of these two movements: P over C plus C over O.</p>
+<p><img alt="desenhos muito doidos de São Tomé" src="https://github.com/alvesjnr/alvesjnr.github.com/raw/master/static/spirograph_02.jpg" title="desenhos muito doidos de São Tomé" /></p>
+<p>But what we want at this point is: how to reproduce these traces? How can we parametrize the equation that give us the point P(x,y) as the gear spins. You must not believe at this moment, but these equations are pretty easy to find.</p>
+<p>First of all let's define some things. As I'm not a mathematician (nor sick) let's put the center of our circle in the origin of our coordinates system. Let's call the center of the circle as O (origin). Let's also call as R the radius of this circle.</p>
+<p>The gear has two important parameters: it's radius (which will be called r) and the radius of the trace, that is, the distance between the center of the gear and the point where the pen will be placed. Let's call this radius as r'. The center of this gear will be called C. And the point where the pen is placed will be called P.</p>
+<p>Just one more definition: let's assume that the gear translate on the counterclockwise way.</p>
+<p><img alt="KmPlot" src="https://github.com/alvesjnr/alvesjnr.github.com/raw/master/static/espirografo_define.png" title="blah" /></p>
+<h2>Part I - Parameterization of the position of the point C</h2>
+<p>Once we start to trace our spiral, we move the gear counterclockwise. What we want to get at this point is the coordinates of the point C (center of the gear) over the angle theta.</p>
+<p><img alt="C" src="https://github.com/alvesjnr/alvesjnr.github.com/raw/master/static/espirografo_C.png" title="blah" /></p>
+<p>Letting (R-r) be the distance between the origin O and the center of the gear, we get:</p>
+<p><img alt="equ_C" src="https://github.com/alvesjnr/alvesjnr.github.com/raw/master/static/equ_c.gif" title="blah" /></p>
+<p>And here we've just got the position (x,y) of a point of the spiral for each angle theta of our system.</p>
+<h2>Part II - Parametrization of the pint P over the point C</h2>
+<p>Now that we already have the equations of the point C, let's look for the position of the point P over the point C. Again let's draw to easily see the equation:</p>
+<p><img alt="equ_Pc" src="https://github.com/alvesjnr/alvesjnr.github.com/raw/master/static/espirografo_Pc.png" title="blah" /></p>
+<p>Look that when we move our gear counterclockwise (increase theta) this same gear spins (around itself) clockwise (phi decreases). It give us:</p>
+<p><img alt="equ_Pc" src="https://github.com/alvesjnr/alvesjnr.github.com/raw/master/static/equ_pc.gif" title="blah" /></p>
+<p>The minus sign on equation y is given just because the gear spins clockwise. To better see what is heppen, let's take this initial position:</p>
+<p><img alt="equ_Pc" src="https://github.com/alvesjnr/alvesjnr.github.com/raw/master/static/rodando.png" title="blah" /></p>
+<p>In this case we have thata=0 and phi=0. As soon as we start to move the gear clockwise through the big circle (increase theta), the point P will decrease on the y axe over the point C. That is why the value of y in this equation have the minus sign.</p>
+<h2>Part III - Summing the values</h2>
+<p>Now that we have C over O and P over C, let's sum these equations and get P over O:</p>
+<p><img alt="equ_Pc" src="https://github.com/alvesjnr/alvesjnr.github.com/raw/master/static/equ_p_theta_phi.gif" title="blah" /></p>
+<p>Look that our parametric function has two variables: theta and phi. But there is an correlation about those two values.</p>
+<p><img alt="equ_Pc" src="https://github.com/alvesjnr/alvesjnr.github.com/raw/master/static/thetaphi.gif" title="blah" /></p>
+<p>What give us:</p>
+<p><img alt="equ_Pc" src="https://github.com/alvesjnr/alvesjnr.github.com/raw/master/static/equ_p_theta_phi.gif" title="blah" /></p>
+<p>When we substitute the value of phi in the position equation we get:</p>
+<p><img alt="equ_Pc" src="https://github.com/alvesjnr/alvesjnr.github.com/raw/master/static/equ_P_final.gif" title="blah" /></p>
+<p>And finally with just one variable (theta) and three parameters (R, r and r') we have an equation of the spirograph</p>
+<p>Below is provided a Python script that draws the spiral by those parameters. The function that generates the point can accept also two extra parameters:</p>
+<p>spins -&gt; how many complete turns the gear will do
+resolution -&gt; how much is the increment of the angle phi for each point</p>
+<p>To run this script you must have matplotlip installed in your computer</p>
+<p>We can also plot the trace of an spirograph using any graphical software that accept parametric equations. Here we have one example using KmPlot on Ubuntu Linux:</p>
+<p><img alt="KmPlot" src="https://github.com/alvesjnr/alvesjnr.github.com/raw/master/static/kmplot.png" title="KmPlot" />
+Parâmetros: 
+<em>R</em>: 5
+<em>r</em>: 1.1
+<em>r'</em>: 1
+theta: variando de 0 a 2<em>pi</em>10 (10 voltas complestas)</p>
+<p>Some examples using the Python script:</p>
+<p><img alt="Python" src="https://github.com/alvesjnr/alvesjnr.github.com/raw/master/static/espirapy_1.png" title="Python" /></p>
+<p><img alt="Python" src="https://github.com/alvesjnr/alvesjnr.github.com/raw/master/static/espirapy_2.png" title="Python" /></p>
+<p><a href="https://gist.github.com/1948754#file_spirograph.py">Python Source Code</a></p>                </article>
+<p class="paginator">
+    Page 1 / 1
+</p>
+            </aside><!-- /#featured -->
+            </ol><!-- /#posts-list -->
+            </section><!-- /#content -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
