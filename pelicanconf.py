@@ -7,7 +7,7 @@ SITENAME = u'My Blog, My Rules.'
 SITEURL = 'http://alvesjnr.github.io'
 
 TIMEZONE = 'Europe/Paris'
-THEME = 'templates/more_simple/templates'
+THEME = 'templates/notmyidea'
 DEFAULT_LANG = u'en'
 
 # Feed generation is usually not desired when developing
@@ -25,7 +25,7 @@ LINKS =  (('Pelican', 'http://getpelican.com/'),
 SOCIAL = (('You can add links in your config file', '#'),
           ('Another social link', '#'),)
 
-DEFAULT_PAGINATION = 10
+DEFAULT_PAGINATION = False 
 
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
