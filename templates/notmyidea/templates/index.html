@@ -2,15 +2,15 @@
 {% block content_title %}{% endblock %}
 {% block content %}
 {% if articles %}
+        <aside id="featured" class="body">
     {% for article in articles_page.object_list %}
 
-        <aside id="featured" class="body">
             {{ article.date }} 
             <article>
                 <h3 class="entry-title"><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h1>                    
             </article>
-        </aside><!-- /#featured -->
     {% endfor %}
+        </aside><!-- /#featured -->
 {% else %}
 <section id="content" class="body">
 <h2>Pages</h2>
