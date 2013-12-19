@@ -11,6 +11,13 @@
         <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} RSS Feed" />
         {% endif %}
 
+        {% if article and article.latex %}
+            {{ article.latex }}
+        {% endif %}
+        {% if page and page.latex %}
+            {{ page.latex }}
+        {% endif %}
+
         <!--[if IE]>
             <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->

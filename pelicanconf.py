@@ -15,6 +15,9 @@ FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
+PLUGIN_PATH = 'pelican-plugins'
+PLUGINS = ['latex']
+
 # Blogroll
 LINKS =  (
           ('Python.org', 'http://python.org/'),

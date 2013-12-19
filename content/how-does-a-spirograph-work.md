@@ -6,7 +6,6 @@ Slug: how-does-spirograph-work
 Author: Antonio Ribeiro
 Summary: Playing with functions parametrization to plot the behaviour of a spirograph.
 
-
 Some of you shall ask yourselves: "How does a spirograph work?". But I'm sure that most of you would ask me: "What the wacko is an spirograph?"
 
 An spirograph is a toy used to draw "weird spirals" using two circles (one inside other). For whom doesn't remember, the toy is these one:
