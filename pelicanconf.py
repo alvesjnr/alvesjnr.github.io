@@ -16,16 +16,20 @@ CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
 # Blogroll
-LINKS =  (('Pelican', 'http://getpelican.com/'),
+LINKS =  (
           ('Python.org', 'http://python.org/'),
-          ('Jinja2', 'http://jinja.pocoo.org/'),
-          ('You can modify those links in your config file', '#'),)
+          ('Python Brasil', 'http://www.python.org.br/wiki'),
+		  ('Pelican', 'http://getpelican.com/'),
+		  )
 
 # Social widget
-SOCIAL = (('You can add links in your config file', '#'),
-          ('Another social link', '#'),)
+SOCIAL = (('Github', 'http://www.github.com/alvesjnr'),
+          ('Bitbucket', 'http://www.bitbucket.com/alvesjnr'),
+          ('Facebook','http://www.facebook.com/alvesjnr'),
+          ('Twitter','http://www.twitter.com/alvesjnr'),
+          ('E-Mail','mailto:alvesjunior.antonio@gmail.com'))
 
 DEFAULT_PAGINATION = False 
 
 # Uncomment following line if you want document-relative URLs when developing
-#RELATIVE_URLS = True
+# RELATIVE_URLS = True
