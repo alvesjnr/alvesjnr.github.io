@@ -5,6 +5,7 @@ from __future__ import unicode_literals
 AUTHOR = u'Antonio Ribeiro'
 SITENAME = u'My Blog, My Rules.'
 SITEURL = 'http://alvesjnr.github.io'
+DISQUS_SHORTNAME = 'myblogmyrules'
 
 TIMEZONE = 'Europe/Paris'
 THEME = 'templates/notmyidea'
