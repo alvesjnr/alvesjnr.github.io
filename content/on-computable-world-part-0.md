@@ -46,28 +46,28 @@ Sometimes proving things becomes very difficult, so mathematicians introduced a 
 
 So, to check if the rational numbers is actually enough to represent any possible number, let's assume that every number is rational. So, it let numbers as _1_, _2_, _3_, _1/4_, _0.888_ became rational. For this it is okay, because we actually know that those number are rational. But what about a number that we are not that sure about? Lets pick _sqrt(2)_. According to our assumption, _sqrt(2)_ is a rational number, so it can be represented as a ratio of two natural numbers:
 
-![Math - a/b = sqrt(2)](http://raw.github.com/alvesjnr/alvesjnr.github.io/blog/static/on_computable_p0_img1.png)
+![Math - a/b = sqrt(2)](http://raw.github.com/alvesjnr/alvesjnr.github.io/master/static/on_computable_p0_img1.png)
 
 In this case, not _a_ and _b_ can be even numbers, at least one of they must be an odd number. Why? Let's assume that both are even, so we could divide both by _2_, which give us a new representation of the same number. An we are able to repeat this action until at least one of this two numbers becomes odd.
 
 From this representation, after a very simple manipulation we get:
 
-![Math](http://raw.github.com/alvesjnr/alvesjnr.github.io/blog/static/on_computable_p0_img2.png)
+![Math](http://raw.github.com/alvesjnr/alvesjnr.github.io/master/static/on_computable_p0_img2.png)
 
-![Math](http://raw.github.com/alvesjnr/alvesjnr.github.io/blog/static/on_computable_p0_img3.png)
+![Math](http://raw.github.com/alvesjnr/alvesjnr.github.io/master/static/on_computable_p0_img3.png)
 
 
 So, with this we conclude that _a²_ is an even number, because it is equal to _2*b²_ (any natural number multiplied by two is an even number). The only way that _a²_ became an even number is if _a_ is also an even number, because only an even number multiplied by itself becomes an even number. So we can conclude that _a_ is even for this case. Our next step is to check if we can get into contradictions with this.
 
 If _a_ is even, _b_ cannot be, it should be an odd number. And if _a_ is even, it should be 2 times any number. Let's call this new number as _c_. So _a=2*c_, what give us:
 
-![Math](http://raw.github.com/alvesjnr/alvesjnr.github.io/blog/static/on_computable_p0_img4.png)
+![Math](http://raw.github.com/alvesjnr/alvesjnr.github.io/master/static/on_computable_p0_img4.png)
 
-![Math](http://raw.github.com/alvesjnr/alvesjnr.github.io/blog/static/on_computable_p0_img5.png)
+![Math](http://raw.github.com/alvesjnr/alvesjnr.github.io/master/static/on_computable_p0_img5.png)
 
-![Math](http://raw.github.com/alvesjnr/alvesjnr.github.io/blog/static/on_computable_p0_img6.png)
+![Math](http://raw.github.com/alvesjnr/alvesjnr.github.io/master/static/on_computable_p0_img6.png)
 
-![Math](http://raw.github.com/alvesjnr/alvesjnr.github.io/blog/static/on_computable_p0_img7.png)
+![Math](http://raw.github.com/alvesjnr/alvesjnr.github.io/master/static/on_computable_p0_img7.png)
 
 That give us _b²_ as an even number, because b² is twice a number. And also as any square root of an even number is also even, we get _b_ as an even number.
 
@@ -106,7 +106,7 @@ Don't care if we get some repeated numbers inside our set, the true here is that
 
 [some!] Irrational numbers can be represented as the root of a algebraic function, just like:
 
-![Math](http://raw.github.com/alvesjnr/alvesjnr.github.io/blog/static/on_computable_p0_img8.png)
+![Math](http://raw.github.com/alvesjnr/alvesjnr.github.io/master/static/on_computable_p0_img8.png)
 
 As the exponent _N_ of the polynomial equation is a natural number and each one of its coefficients are integers, for any particular equation we get a finite number of solutions. If we get the sum of all coefficients and the exponential as an index of the equation, is it possible to list all integers that can be represented by the solution of an algebraic function in a set. Which make this set enumerable.
 
@@ -150,6 +150,7 @@ What does it tell us? Remember, the set of natural numbers is enumerable. The se
 
 But, if there is not an algebraic way to obtain an transcendental number, how can it be obtained? One way to obtain it is through the series of sums. One example of series of sum is the Leibniz formula for __π__:
 
-![Math](http://raw.github.com/alvesjnr/alvesjnr.github.io/blog/static/leibniz_pi_series.png)
+![Math](http://raw.github.com/alvesjnr/alvesjnr.github.io/master/static/leibniz_pi_series.png)
 
 This way to obtain _pi_ is nothing but an __algorithm__. And here is where our tour through the computable world begins.
+
