@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>On Computable World - Part 0</title>
+        <link rel="stylesheet" href="http://alvesjnr.github.io/theme/css/main.css" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://alvesjnr.github.io/">My Blog, My Rules. </a></h1>
+                <nav><ul>
+                    <li class="active"><a href="http://alvesjnr.github.io/category/math.html">Math</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="http://alvesjnr.github.io/on-computable-world-00.html" rel="bookmark"
+           title="Permalink to On Computable World - Part 0">On Computable World - Part 0</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2013-12-19T10:20:00">
+                Thu 19 December 2013
+        </abbr>
+
+        <address class="vcard author">
+                By <a class="url fn" href="http://alvesjnr.github.io/author/antonio-ribeiro.html">Antonio Ribeiro</a>
+        </address>
+<p>In <a href="http://alvesjnr.github.io/category/math.html">Math</a>. </p>
+<p>tags: <a href="http://alvesjnr.github.io/tag/math.html">math</a><a href="http://alvesjnr.github.io/tag/compsci.html">compsci</a><a href="http://alvesjnr.github.io/tag/computation.html">computation</a><a href="http://alvesjnr.github.io/tag/turing.html">Turing</a></p>
+</footer><!-- /.post-info -->      <h2>What is computable?</h2>
+<p>So I decided to start a series of posts about <strong>'What is computable'</strong>, but what do I mean about computable?</p>
+<p>The computer world nowadays becomes so complex, with lots of levels separating me as a computer engineer and the computer as a machine. What I intend with this post series is to come back to the origin of the idea of computable, to approach to the ancient concept of computable numbers and computable machine, and to create, using these foundations, our own computer architecture.</p>
+<p>So, to begin let's go back to the concept of numbers: what is a number? On the beginning of humanity, number was introduced on the humans life to practical reasons: to count. To do this, natural numbers were enough. A former had the necessity of know (and store this value) how many cows, goals, sheep he had. To do this, natural numbers fits well. Just a note here: at this point the concept of zero as a number was unknown. Zero was not considered as a number, and it makes sense in this scenario: if the farmer didn't have any cow, why does he would represent it?</p>
+<p>But in a determined moment on the human history, integers number were not doing all the necessary work. How would I represent the distance between two points? Let's say that we represent this value using multiples of a small unity, as a foot, for instance. This might works to represent relatively large distance, as the distance between my house and the church (127 feet) or the distance between my city and Paris(99713 feet). Natural numbers fits nice to do this work, but how would I represent the distance among my finger and the center of my hand using natural numbers in this scale? This distance is shorter than a foot, so I have two possibilities: to approximate it to one foot, or to approximate it to zero foot (assuming the existence of zero as a number).</p>
+<p>So, to this work we lay in lack of representativity of the natural numbers. With natural numbers we are not able to represent a portion of a quantity, we just can represent multiples of a unity of this quantity. So, at this moment the rational numbers fits nice.</p>
+<p>Rational numbers is any number which can be represented by the ratio of two integers. It makes any natural also a rational number, for instance,</p>
+<p><em>4/2=2</em></p>
+<p>But it introduces us to some very interesting numbers, which were not present as an natural number. With this way to represent number we are not anymore limited to multiples of a unity, we could represent sub-multiples of it. So, to represent the distance among my finger and the center of my hand now I could use rational numbers, and it becomes: <em>1/2</em> foot.</p>
+<p>At this moment a completely new world was introduced. The old world where numbers was discrete points became (apparently) continuous, with much more possibilities to represent what we need.</p>
+<h2>Is this the real life? Or is this just fantasy?</h2>
+<p>But at some time weird numbers becomes to us, and it was quite difficult to represent it using rational numbers. Example of numbers where the rational representations doesn't fits was popping every time. Numbers as</p>
+<p><em>sqrt(2)</em></p>
+<p><em>sqrt(3)</em></p>
+<p><em>pi</em></p>
+<p><em>e</em></p>
+<p>were becoming more usual in the math world, but the available tools doesn't represents them very well. At some time a questions was done: is the rational numbers enough to represent any existing number? Or there are number which couldn't be represented as a ratio of two natural numbers? If those numbers exists, how to prove it?</p>
+<p>Sometimes proving things becomes very difficult, so mathematicians introduced a way to describe a proof: the proof by contradiction. The idea is to assume that something is true, and then get into contradiction, which let us to prove exactly the contrary.</p>
+<p>So, to check if the rational numbers is actually enough to represent any possible number, let's assume that every number is rational. So, it let numbers as <em>1</em>, <em>2</em>, <em>3</em>, <em>1/4</em>, <em>0.888</em> became rational. For this it is okay, because we actually know that those number are rational. But what about a number that we are not that sure about? Lets pick <em>sqrt(2)</em>. According to our assumption, <em>sqrt(2)</em> is a rational number, so it can be represented as a ratio of two natural numbers:</p>
+<p><img alt="Math - a/b = sqrt(2)" src="http://alvesjnr.github.io/blog/static/on_computable_p0_img1.png" /></p>
+<p>In this case, not <em>a</em> and <em>b</em> can be even numbers, at least one of they must be an odd number. Why? Let's assume that both are even, so we could divide both by <em>2</em>, which give us a new representation of the same number. An we are able to repeat this action until at least one of this two numbers becomes odd.</p>
+<p>From this representation, after a very simple manipulation we get:</p>
+<p><img alt="Math" src="http://alvesjnr.github.io/blog/static/on_computable_p0_img2.png" /></p>
+<p><img alt="Math" src="http://alvesjnr.github.io/blog/static/on_computable_p0_img3.png" /></p>
+<p>So, with this we conclude that <em>a²</em> is an even number, because it is equal to <em>2*b²</em> (any natural number multiplied by two is an even number). The only way that <em>a²</em> became an even number is if <em>a</em> is also an even number, because only an even number multiplied by itself becomes an even number. So we can conclude that <em>a</em> is even for this case. Our next step is to check if we can get into contradictions with this.</p>
+<p>If <em>a</em> is even, <em>b</em> cannot be, it should be an odd number. And if <em>a</em> is even, it should be 2 times any number. Let's call this new number as <em>c</em>. So <em>a=2*c</em>, what give us:</p>
+<p><img alt="Math" src="http://alvesjnr.github.io/blog/static/on_computable_p0_img4.png" /></p>
+<p><img alt="Math" src="http://alvesjnr.github.io/blog/static/on_computable_p0_img5.png" /></p>
+<p><img alt="Math" src="http://alvesjnr.github.io/blog/static/on_computable_p0_img6.png" /></p>
+<p><img alt="Math" src="http://alvesjnr.github.io/blog/static/on_computable_p0_img7.png" /></p>
+<p>That give us <em>b²</em> as an even number, because b² is twice a number. And also as any square root of an even number is also even, we get <em>b</em> as an even number.</p>
+<p>As we said, assuming <em>sqrt(2)=a/b</em> let us into a contradiction, which proves that exists numbers that can't be represented as a ratio of two natural numbers.</p>
+<p>As this numbers is not a ratio of natural numbers, is is called irrational number.</p>
+<p>Now our set of numbers seems to be complete. We have ways to represent any natural number (to count), a way to represent any fractional number, as a ratio of natural, and we also proved the existence of numbers that are not represented as a ratio of two natural numbers. Add to this the possibility of negative numbers, to represent values lowers than zero, and we have a complete scenario of all possible numbers (Imaginary numbers don't care to us in this essay). Are we correct?</p>
+<p>To make an exercise with our minds, lets think about a trick: which set is bigger, the set of all natural numbers or the set of all <strong>even</strong> natural numbers? Maybe our first answer is that the set of all natural numbers has twice the size of the set that contains just the even ones. But the amount of natural numbers are infinity, and quickly we get confused ... Lets try again:</p>
+<p>Set of all natural numbers (let's forget the zero for those cases):</p>
+<p>s = {1, 2, 3, 4, 5, ... }</p>
+<p>Set of all even numbers:</p>
+<p>s_e = {2, 4, 6, 8, ...}</p>
+<p>If we look into those sets, we can make an correlation among the first set and the second one. In another word, we can enumerate the set of even numbers using the set of natural numbers, what give us:</p>
+<p>s_e = {1-&gt;2, 2-&gt;4, 3-&gt;6, 4-&gt;8, ...}</p>
+<p>So, for each number on the even set we have a correspondent on the natural set. What tell us that the size of both sets are the same. Does it makes sense?</p>
+<h2>Infinites and Infinites</h2>
+<p>At this point it was necessary to add another concept to tell about infinite sets: the concept of countable. A set is countable if we are able to order any element of this set in a proper order.</p>
+<p>As we show above, we was able to enumerate the set of even numbers. We are also able to enumerate the set of all rational numbers, for instance:</p>
+<p>s = {1/1, 1/2, 2/2, 1/3, 2/3, 3/3, 1/4, 2/4, 3/4, 4/4 ...}</p>
+<p>Don't care if we get some repeated numbers inside our set, the true here is that is possible to list all the rational numbers inside a set, which make then a countable set. But what about irrational numbers?</p>
+<p>[some!] Irrational numbers can be represented as the root of a algebraic function, just like:</p>
+<p><img alt="Math" src="http://alvesjnr.github.io/blog/static/on_computable_p0_img8.png" /></p>
+<p>As the exponent <em>N</em> of the polynomial equation is a natural number and each one of its coefficients are integers, for any particular equation we get a finite number of solutions. If we get the sum of all coefficients and the exponential as an index of the equation, is it possible to list all integers that can be represented by the solution of an algebraic function in a set. Which make this set enumerable.</p>
+<p>The question now is: is the set of all existent number enumerable?</p>
+<h2>Defining the Undefined</h2>
+<p>Let's again suppose that something is possible even if we are not sure about it. Lets assume that is it possible to enumerate the set which contains every single number existent. To this becomes true we should be able, for instance, to enumerate the set that contains every single number between 0 and 1 (open interval in both sides). So, let's try:</p>
+<p><em>0.4276387832 ...</em></p>
+<p><em>0.1414213562 ...</em></p>
+<p><em>0.1231231231 ...</em></p>
+<p><em>0.3333333333 ...</em></p>
+<p><em>0.1000000000 ...</em>
+<em>...</em></p>
+<p>And this list go on ... But remember, this list is infinity. Our question is: is it complete?</p>
+<p>Is it easy to prove that, no matters how big is this list, it is aways incomplete. Let's pick the values on the diagonal of this list (forget the 0., let's take care just of the decimal part). In another words, let's get the first element of the first number, the second element of the second number, and so. At the end we get:</p>
+<p><em>44330 ...</em></p>
+<p>So, let's add <em>1</em> to each element of this number. If the element is <em>9</em> it will become <em>0</em>:</p>
+<p><em>55441 ...</em></p>
+<p>And place this number in our scale from 0 to 1, which give us:</p>
+<p><em>0.55441 ...</em></p>
+<p>So, is this number in our previous list? Doing it step by step, is this number the first one? No, because the first element is different (we added one to it). Is this number the second one? Also it isn't, because the second element is different. Is this number the <em>n</em> th? No, because de <em>n</em> th element is different.</p>
+<p>So, it proves that, no matter how complete is our set, it will be aways missing numbers on it. </p>
+<p>What does it tell us? Remember, the set of natural numbers is enumerable. The set of rational is also enumerable. Even the set of algebraic numbers is enumerable. But the set of all possible numbers isn't! Which means that there are some numbers that are not neither natural, nor integer, nor algebraic. Those numbers are called transcendental numbers. One classic transcendental number is <strong>π</strong>. Which means that there is not a algebraic function which the root is <strong>π</strong>.</p>
+<p>But, if there is not an algebraic way to obtain an transcendental number, how can it be obtained? One way to obtain it is through the series of sums. One example of series of sum is the Leibniz formula for <strong>π</strong>:</p>
+<p><img alt="Math" src="http://alvesjnr.github.io/blog/static/leibniz_pi_series.png" /></p>
+<p>This way to obtain <em>pi</em> is nothing but an <strong>algorithm</strong>. And here is where our tour through the computable world begins.</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
