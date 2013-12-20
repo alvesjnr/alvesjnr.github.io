@@ -28,7 +28,7 @@ LINKS =  (
 
 # Social widget
 SOCIAL = (('Github', 'http://www.github.com/alvesjnr'),
-          ('Bitbucket', 'http://www.bitbucket.com/alvesjnr'),
+          ('Bitbucket', 'http://www.bitbucket.org/alvesjnr'),
           ('Facebook','http://www.facebook.com/alvesjnr'),
           ('Twitter','http://www.twitter.com/alvesjnr'),
           ('E-Mail','mailto:alvesjunior.antonio@gmail.com'))

@@ -11,12 +11,13 @@
 /* Imports */
 @import url("reset.css");
 @import url("pygment.css");
-@import url("typogrify.css");
-@import url(//fonts.googleapis.com/css?family=Yanone+Kaffeesatz&subset=latin);
+/*@import url("typogrify.css");*/
+/*@import url(//fonts.googleapis.com/css?family=Yanone+Kaffeesatz&subset=latin);*/
 
 /***** Global *****/
 /* Body */
 body {
+    /*background: #F5F4EF;*/
     background: #F5F4EF;
     color: #000305;
     font-size: 87.5%; /* Base font size: 14px */
