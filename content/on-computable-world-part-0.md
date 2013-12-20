@@ -4,28 +4,28 @@ Tags: math, compsci, computation, Turing
 Category: Math
 Slug: on-computable-world-00
 Author: Antonio Ribeiro
-Summary: What do I think about numbers and computatble numbers.
+Summary: What do I think about numbers and computable numbers.
 
 What is computable?
 ------------------
 
-So I decided to start a series of posts about __'What is computable'__, but what do I mean about computable?
+So I decided to start a series of posts about __'What is computable'__.
 
-The computer world nowadays becomes so complex, with lots of levels separating me as a computer engineer and the computer as a machine. What I intend with this post series is to come back to the origin of the idea of computable, to approach to the ancient concept of computable numbers and computable machine, and to create, using these foundations, our own computer architecture.
+The computer world became so complex, with lots of levels separating me, as a computer scientist, from the computer as a machine. My intention on this series is to come back to the origin of the idea of computable. To approach to the ancient concept of computable numbers and computable machine.
 
-So, to begin let's go back to the concept of numbers: what is a number? On the beginning of humanity, number was introduced on the humans life to practical reasons: to count. To do this, natural numbers were enough. A former had the necessity of know (and store this value) how many cows, goals, sheep he had. To do this, natural numbers fits well. Just a note here: at this point the concept of zero as a number was unknown. Zero was not considered as a number, and it makes sense in this scenario: if the farmer didn't have any cow, why does he would represent it?
+So, to begin let's go back to the concept of numbers: what is a number? On the beginning of humanity, numbers were introduced to the humans life for practical reasons: counting. In this scenario, natural numbers were enough. A former had the necessity to know how many cows, goals, sheep he had. To do this, natural numbers fits nicely. Just a note here: at this point the concept of zero as a number was unknown. Zero was not considered a number, and it makes sense in this scenario: if the farmer didn't have any cow, why would he cares about representing it?
 
-But in a determined moment on the human history, integers number were not doing all the necessary work. How would I represent the distance between two points? Let's say that we represent this value using multiples of a small unity, as a foot, for instance. This might works to represent relatively large distance, as the distance between my house and the church (127 feet) or the distance between my city and Paris(99713 feet). Natural numbers fits nice to do this work, but how would I represent the distance among my finger and the center of my hand using natural numbers in this scale? This distance is shorter than a foot, so I have two possibilities: to approximate it to one foot, or to approximate it to zero foot (assuming the existence of zero as a number).
+But in a determined moment on the human history, integers number were not doing all the necessary work. How would I represent the distance between two points? Let's say that we use multiples of a small unity for this. Let's try with a small unity: a foot. This might works to represent relatively large distance, as the distance between my house and the church (127 feet) or the distance between my city and Paris (99713 feet). Natural numbers fits nice to do this work, but how would I represent the distance between my finger and the center of my hand using natural numbers in this scale? This distance is shorter than a foot, so I have two possibilities: to approximate it to one foot, or to approximate it to zero foot (assuming the existence of zero as a number).
 
-So, to this work we lay in lack of representativity of the natural numbers. With natural numbers we are not able to represent a portion of a quantity, we just can represent multiples of a unity of this quantity. So, at this moment the rational numbers fits nice.
+For this purpose we need a new category of number. A kind of number that can be used to represent a value in an interval of two natural numbers. In this case, rational numbers does the work. A rational number is any number that cam be represented by the ration of two natural numbers:
 
-Rational numbers is any number which can be represented by the ratio of two integers. It makes any natural also a rational number, for instance,
+$$4/2 = 2$$
 
-_4/2=2_
+This introduces us to some very interesting numbers, which doesn't belongs to the natural numbers domain.
 
-But it introduces us to some very interesting numbers, which were not present as an natural number. With this way to represent number we are not anymore limited to multiples of a unity, we could represent sub-multiples of it. So, to represent the distance among my finger and the center of my hand now I could use rational numbers, and it becomes: _1/2_ foot.
+With this way to represent number we are not anymore limited to multiples of an unity, we could represent sub-multiples of it. So, to represent the distance among my finger and the center of my hand now I could use rational numbers, and it becomes: $$1/2$$ foot.
 
-At this moment a completely new world was introduced. The old world where numbers was discrete points became (apparently) continuous, with much more possibilities to represent what we need.
+At this moment a completely new world was introduced. Numbers are no longer discrete points with a space between them. There are many others numbers between two natural numbers.
 
 Is this the real life? Or is this just fantasy?
 -----------------------------------------------
