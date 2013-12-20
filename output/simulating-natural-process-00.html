@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Simulating Natural Systems - Part 0</title>
+        <link rel="stylesheet" href="http://alvesjnr.github.io/theme/css/main.css" />
+
+            
+    <script type= "text/javascript">
+        var s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.src = 'https:' == document.location.protocol ? 'https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js' : 'http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'; 
+        s[(window.opera ? "innerHTML" : "text")] =
+            "MathJax.Hub.Config({" + 
+            "    config: ['MMLorHTML.js']," + 
+            "    jax: ['input/TeX','input/MathML','output/HTML-CSS','output/NativeMML']," +
+            "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," + 
+            "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+            "    tex2jax: { " +
+            "        inlineMath: [ ['$','$'] ], " +
+            "        displayMath: [ ['$$','$$'] ]," +
+            "        processEscapes: true }, " +
+            "    'HTML-CSS': { " +
+            "        styles: { '.MathJax .mo, .MathJax .mi': {color: 'black ! important'}} " +
+            "    } " +
+            "}); ";
+        (document.body || document.getElementsByTagName('head')[0]).appendChild(s);
+    </script>
+
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://alvesjnr.github.io/">My Blog, My Rules. </a></h1>
+                <nav><ul>
+                    <li><a href="http://alvesjnr.github.io/category/math.html">Math</a></li>
+                    <li class="active"><a href="http://alvesjnr.github.io/category/simulation.html">Simulation</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="http://alvesjnr.github.io/simulating-natural-process-00.html" rel="bookmark"
+           title="Permalink to Simulating Natural Systems - Part 0">Simulating Natural Systems - Part 0</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2013-12-21T10:20:00">
+                Sat 21 December 2013
+        </abbr>
+
+        <address class="vcard author">
+                By <a class="url fn" href="http://alvesjnr.github.io/author/antonio-ribeiro.html">Antonio Ribeiro</a>
+        </address>
+<p>In <a href="http://alvesjnr.github.io/category/simulation.html">Simulation</a>. </p>
+<p>tags: <a href="http://alvesjnr.github.io/tag/simulation.html">simulation</a><a href="http://alvesjnr.github.io/tag/programming.html">programming</a></p>
+</footer><!-- /.post-info -->      <p>I am a really fan of computer simulations. I think that this is a fantastic (and really broad) field in computer science.</p>
+<p>In my Msc. in Computer Science I spent a long time studding <a href="http://en.wikipedia.org/wiki/Discrete_event_simulation">discrete events simulation</a>. Currently I'm working quite close to numerical simulations, using techniques like <a href="http://en.wikipedia.org/wiki/Finite-difference_time-domain_method">finite-difference time-domain</a> and <a href="">eigenmode expansion</a> to simulate the behavior of electrodynamics waves in dielectric media (like glass, air and silicon).</p>
+<p>One day, in one of those forums (like reddit), I discovered <a href="http://natureofcode.com">The Nature of Code</a>, a very nice book for someone who is aiming to to debut in simulations. This book, written by Daniel Shiffman, brings a lot of interesting concepts about tools to model natural systems (like vectors, force, oscillation) and link them to more elaborated concepts, like cellular automata and neural networks, to simulate complex systems, like a small synthetic ecosystem.</p>
+<p>The major drawback of this book, from my perspective, is that it uses Java as the language to code the examples. Although Java is a very powerful language, it is far from been the favorite language for hobbyists and pet projects. Due to this I proposed to implement the examples and exercises from the book in a mix o C and Python (working with C/Python integration is mine hidden agenda in this project). All the code I'll put in this dedicated <a href="https://github.com/alvesjnr/nature-of-code">Github repository</a>.</p>
+<p>I don't have any particular schedule to update this project, which means that sometimes I'll post twice about this in the same week and sometimes I will spend two whole months not talking about this.</p>
+<p><img alt="The Nature of Code" src="static/nature-of-code.png" title="The Nature of Code" /></p>
+    </div><!-- /.entry-content -->
+    <div class="comments">
+      <h2>Comments !</h2>
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        var disqus_shortname = "myblogmyrules";
+        var disqus_identifier = "simulating-natural-process-00.html";
+        var disqus_url = "http://alvesjnr.github.io/simulating-natural-process-00.html";
+        (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://myblogmyrules.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+    </div>
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://www.python.org.br/wiki">Python Brasil</a></li>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="http://www.github.com/alvesjnr">Github</a></li>
+                            <li><a href="http://www.bitbucket.com/alvesjnr">Bitbucket</a></li>
+                            <li><a href="http://www.facebook.com/alvesjnr">Facebook</a></li>
+                            <li><a href="http://www.twitter.com/alvesjnr">Twitter</a></li>
+                            <li><a href="mailto:alvesjunior.antonio@gmail.com">E-Mail</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
