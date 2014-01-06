@@ -1,5 +1,5 @@
 Title: Simulating Natural Systems - Part 1
-Date: 2014-01-06 10:20
+Date: 2014-01-06 14:00
 Tags: simulation, programming, Cython
 Category: Simulation
 Slug: simulating-natural-process-01
@@ -51,9 +51,9 @@ It starts a bloc of code where are declared all the extern functions/data struct
         double nvector_angle_between( nvector *v1,  nvector *v2)
         double nvector_angle( nvector *v)
 
-This block of code tells to Cython which functions and data structures we are interfacing with. Extra attention to the struct: we statically defined the type of each variables in the struct.
+This bloc of code tells to Cython which functions and data structures we are interfacing with. Extra attention to the struct: we statically defined the type of each variables in the struct.
 
-Our next step is to define our Python equivalent of the vector. For this the approach will be a class Vector which implements all the methods related to our vector:
+Our next step is to define our Python equivalent of the vector. The approach will be to create a class Vector which implements all the methods related to our vector:
 
     cdef class Vector:
         
@@ -63,16 +63,12 @@ Our next step is to define our Python equivalent of the vector. For this the app
         def __cinit__(self, double x=0.0, double y=0.0):
             self._vector = nvector_new(x,y)
 
-Two main thing can be notated from this piece of code: the class statically define the variable _vector as 'cdef nvector* vector' and the constructor, when initiating the struct nvector, explicitly casts the object returned by the function *nvector_new*.
-
-The reason for the first is that nvector is not an ordinary python object, so it should be explicitly declared as so.
-
-The reason to do the casting is similar. The function nvector_new returns a C struct and we cast it to the Cython equivalent nvector in order to assign it to the variable _vector.
+One main thing can be notated from this piece of code: the class statically define the variable _vector as 'cdef nvector* vector'. The reason to do this is that nvector is not an ordinary python object, but a Cython type, and it should be explicitly declared as so.
 
 Tricky part: Convincing the compiler that Vector is indeed a Vector
 ------------------------------------------------
 
-Here a tricky part: when implementing the *__add__* function I got an error because the Cython compiler was not finding my _vector variable. The original code was more or less like this:
+Here a tricky part: when implementing the *\_\_add\_\_* function I got an error because the Cython compiler was not finding my _vector variable. The original code was more or less like this:
 
 
     cdef class Vector:
@@ -93,7 +89,7 @@ The code compiled, but when trying to use it I got:
 
     AttributeError: 'vector.Vector' object has no attribute '_vector'
 
-The reason is: as _vector is declared as cdef, it does not works as an ordinary python object. In fact, to access it we have to explicitly indicate to Cython compiler that my Vector object is indeed of type Vector. We can do it in two different ways: casting our *left* and *right* variables to Vector:
+The reason is: as *_vector* is declared as *cdef*, it does not works as an ordinary python object. In fact, to access it we have to explicitly indicate to Cython compiler that my Vector object is indeed of type Vector. We can do it in two different ways: casting our *left* and *right* variables to Vector:
     
     def __add__(left, right):
         (<Vector>left)._aux_vector =  nvector_copy((<Vector>left)._vector)
@@ -101,7 +97,7 @@ The reason is: as _vector is declared as cdef, it does not works as an ordinary 
 
         return Vector((<Vector>left)._aux_vector.x, (<Vector>left)._aux_vector.y)
 
-or adding the type of the variables in our __add__ method signature:
+or adding the type of the variables in our \_\_add\_\_ method signature:
 
     def __add__(Vector left, Vector right):
         left._aux_vector =  nvector_copy(left._vector)
@@ -109,7 +105,7 @@ or adding the type of the variables in our __add__ method signature:
 
         return Vector(left._aux_vector.x, left._aux_vector.y)
 
-Although the second way is cleaner, it doesn't fits in situations when the same method might receive different operands type. For example, for the __mul__ method, we overload the operator * to operates both cross product (not yet implemented) and do the multiplication from a vector to an integer/float. In those situations, the variables passed to the method __mul__ might by either a double, an int or a Vector object. Our solution for this case is not to specify the type in the method signature, but to sxplicitly cast it in our code:
+Although the second way is cleaner, it doesn't fits in situations when the same method might receive different operands type. For example, for the *\_\_mul\_\_* method, we overload the operator * to operates both cross product (not yet implemented) and do the multiplication from a vector to an integer/float. In those situations, the variables passed to the method *\_\_mul\_\_* might by either a double, an int or a Vector object. Our solution for this case is not to specify the type in the method signature, but to sxplicitly cast it in our code:
 
     def __mul__(left, right):
 
