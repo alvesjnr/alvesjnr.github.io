@@ -1,10 +1,13 @@
 Title: Simulating Natural Systems - Part 1
 Date: 2014-01-06 14:00
-Tags: simulation, programming, Cython
+Tags: simulation, programming, Cython, NatureOfCode
 Category: Simulation
 Slug: simulating-natural-process-01
 Author: Antonio Ribeiro
 Summary: Updating informations about th e project: implementing basic vector arithmetic
+
+
+This post is part of a series. Please check all the previous posts before continuing: [The Nature of Code series](tag/natureofcode.html)
 
 I implemented the first half of the codes discussed in the first chapter of [The Nature of Code](http://natureofcode.com). Mostly of the time was spent learning Cython, instead of actually programing, so I think that the second half of the code wouldn't take more than an hour to be implemented.
 

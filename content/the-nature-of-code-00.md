@@ -1,10 +1,12 @@
 Title: Simulating Natural Systems - Part 0
 Date: 2013-12-21 10:20
-Tags: simulation, programming
+Tags: simulation, programming, NatureOfCode
 Category: Simulation
 Slug: simulating-natural-process-00
 Author: Antonio Ribeiro
 Summary: Overview of the book The Nature of Code: Simulating Natural Systems with Processing
+
+This post is part of a series. Please check all the previous posts before continuing: [The Nature of Code series](tag/natureofcode.html)
 
 I am a really fan of computer simulations. I think that this is a fantastic (and really broad) field in computer science.
 
