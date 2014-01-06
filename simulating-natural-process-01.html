@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Simulating Natural Systems - Part 1</title>
+        <link rel="stylesheet" href="http://alvesjnr.github.io/theme/css/main.css" />
+
+            
+    <script type= "text/javascript">
+        var s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.src = 'https:' == document.location.protocol ? 'https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js' : 'http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'; 
+        s[(window.opera ? "innerHTML" : "text")] =
+            "MathJax.Hub.Config({" + 
+            "    config: ['MMLorHTML.js']," + 
+            "    jax: ['input/TeX','input/MathML','output/HTML-CSS','output/NativeMML']," +
+            "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," + 
+            "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+            "    tex2jax: { " +
+            "        inlineMath: [ ['$','$'] ], " +
+            "        displayMath: [ ['$$','$$'] ]," +
+            "        processEscapes: true }, " +
+            "    'HTML-CSS': { " +
+            "        styles: { '.MathJax .mo, .MathJax .mi': {color: 'black ! important'}} " +
+            "    } " +
+            "}); ";
+        (document.body || document.getElementsByTagName('head')[0]).appendChild(s);
+    </script>
+
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://alvesjnr.github.io/">My Blog, My Rules. </a></h1>
+                <nav><ul>
+                    <li><a href="http://alvesjnr.github.io/category/math.html">Math</a></li>
+                    <li class="active"><a href="http://alvesjnr.github.io/category/simulation.html">Simulation</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="http://alvesjnr.github.io/simulating-natural-process-01.html" rel="bookmark"
+           title="Permalink to Simulating Natural Systems - Part 1">Simulating Natural Systems - Part 1</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2014-01-06T14:00:00">
+                Mon 06 January 2014
+        </abbr>
+
+        <address class="vcard author">
+                By <a class="url fn" href="http://alvesjnr.github.io/author/antonio-ribeiro.html">Antonio Ribeiro</a>
+        </address>
+<p>In <a href="http://alvesjnr.github.io/category/simulation.html">Simulation</a>. </p>
+<p>tags: <a href="http://alvesjnr.github.io/tag/simulation.html">simulation</a><a href="http://alvesjnr.github.io/tag/programming.html">programming</a><a href="http://alvesjnr.github.io/tag/cython.html">Cython</a></p>
+</footer><!-- /.post-info -->      <p>I implemented the first half of the codes discussed in the first chapter of <a href="http://natureofcode.com">The Nature of Code</a>. Mostly of the time was spent learning Cython, instead of actually programing, so I think that the second half of the code wouldn't take more than an hour to be implemented.</p>
+<p>The code is available at my <a href="https://github.com/alvesjnr/nature-of-code">Github repository</a> for this project. The main three files so far are:</p>
+<div class="highlight"><pre><span class="n">nvector_vector</span><span class="p">.</span><span class="n">h</span> <span class="o">-</span> <span class="n">C</span> <span class="n">header</span> <span class="n">file</span>
+<span class="n">nvector_vector</span><span class="p">.</span><span class="n">c</span> <span class="o">-</span> <span class="n">Logical</span> <span class="n">implementation</span> <span class="n">of</span> <span class="n">all</span> <span class="n">operations</span>
+<span class="n">vector</span><span class="p">.</span><span class="n">pyx</span> <span class="o">-</span> <span class="n">Binding</span> <span class="n">to</span> <span class="n">Python</span>
+</pre></div>
+
+
+<p>All the logic is implemented in the <em>nvector_vector.c</em> file. As the logic on basic vetors operation (dot and cross multiplication, addition, subtraction, mudule, etc.) are pretty straightforward, I'll not discuss this implementation at this point. The file <em>vector.pyx</em> is a Cython code that binds the C implementation to Python, providing a Python module after compiled (vector.so). Lets focus on this file.</p>
+<p>My goal when creating a python binding is not just translating the C functions to be called by a Python code. Actually what I have in mind is to write a Python version of the same code, as much <em>pythonic</em> as possible.</p>
+<p>A C code has an explicitly distinction between the data and the logic. As you can see in <em>nvector_vector.c</em>, our data is represented by a <em>struct</em> and all the relevant operations are effectuated by functions that receives our data vector (struct) as a parameter. That's how we code in C, but that's not how we do it in Python.</p>
+<p>When coding in Python, an object oriented approach is more convenient. Our vector would be no longer only a data container, but a full object which contains both our data and the operations over this data (our methods). This way, operations as addition, multiplications, etc. would no longer be executed by external function (as in C) but by the vector object itself.</p>
+<p>That said, lets start coding our Python equivalent of <em>nvector_vector.c</em>. To do this we will use a third language (neither C nor Python): <a href="http://www.cython.org/">Cython</a>. Cython is a superset of Python, which means that, at least in theory, all Python code is valid as a Cython code. Also Cython provides us a lot of extra resources. In special for us at this project is the possibility of talk to C libraries.</p>
+<p>So, the very first thing we do in Cython on this project is to <em>import</em> our C functions. At the very beginning of the code (<em>vector.pyx</em>) we have:</p>
+<div class="highlight"><pre><span class="n">cdef</span> <span class="k">extern</span> <span class="n">from</span> <span class="s">&quot;nvector.h&quot;</span><span class="o">:</span>
+</pre></div>
+
+
+<p>It starts a bloc of code where are declared all the extern functions/data structures that we are importing from our C library:</p>
+<div class="highlight"><pre><span class="n">cdef</span> <span class="k">extern</span> <span class="n">from</span> <span class="s">&quot;nvector.h&quot;</span><span class="o">:</span>
+
+    <span class="n">ctypedef</span> <span class="k">struct</span> <span class="n">nvector</span><span class="o">:</span>
+        <span class="kt">double</span> <span class="n">x</span>
+        <span class="kt">double</span> <span class="n">y</span>
+
+    <span class="n">nvector</span><span class="o">*</span> <span class="n">nvector_new</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="kt">double</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">nvector</span><span class="o">*</span> <span class="n">nvector_copy</span><span class="p">(</span><span class="n">nvector</span> <span class="o">*</span><span class="n">v</span><span class="p">)</span>
+    <span class="kt">void</span> <span class="n">nvector_del</span><span class="p">(</span><span class="n">nvector</span> <span class="o">*</span><span class="n">v</span><span class="p">)</span>
+    <span class="kt">void</span> <span class="n">nvector_add</span><span class="p">(</span><span class="n">nvector</span> <span class="o">*</span><span class="n">left</span><span class="p">,</span> <span class="n">nvector</span> <span class="o">*</span><span class="n">right</span><span class="p">)</span>
+    <span class="kt">void</span> <span class="n">nvector_sub</span><span class="p">(</span><span class="n">nvector</span> <span class="o">*</span><span class="n">left</span><span class="p">,</span>  <span class="n">nvector</span> <span class="o">*</span><span class="n">right</span><span class="p">)</span>
+    <span class="kt">void</span> <span class="n">nvector_mul</span><span class="p">(</span><span class="n">nvector</span> <span class="o">*</span><span class="n">left</span><span class="p">,</span> <span class="kt">double</span> <span class="n">right</span><span class="p">)</span>
+    <span class="kt">double</span> <span class="n">nvector_dot</span><span class="p">(</span> <span class="n">nvector</span> <span class="o">*</span><span class="n">left</span><span class="p">,</span>  <span class="n">nvector</span> <span class="o">*</span><span class="n">right</span><span class="p">)</span>
+    <span class="kt">double</span> <span class="n">nvector_mag</span><span class="p">(</span> <span class="n">nvector</span> <span class="o">*</span><span class="n">v</span><span class="p">)</span>
+    <span class="n">nvector</span><span class="o">*</span> <span class="n">nvector_normalize</span><span class="p">(</span> <span class="n">nvector</span> <span class="o">*</span><span class="n">v</span><span class="p">)</span>
+    <span class="kt">void</span> <span class="n">nvector_setmag</span><span class="p">(</span><span class="n">nvector</span> <span class="o">*</span><span class="n">v</span><span class="p">,</span> <span class="kt">double</span> <span class="n">mag</span><span class="p">)</span>
+    <span class="kt">double</span> <span class="n">nvector_angle_between</span><span class="p">(</span> <span class="n">nvector</span> <span class="o">*</span><span class="n">v1</span><span class="p">,</span>  <span class="n">nvector</span> <span class="o">*</span><span class="n">v2</span><span class="p">)</span>
+    <span class="kt">double</span> <span class="n">nvector_angle</span><span class="p">(</span> <span class="n">nvector</span> <span class="o">*</span><span class="n">v</span><span class="p">)</span>
+</pre></div>
+
+
+<p>This bloc of code tells to Cython which functions and data structures we are interfacing with. Extra attention to the struct: we statically defined the type of each variables in the struct.</p>
+<p>Our next step is to define our Python equivalent of the vector. The approach will be to create a class Vector which implements all the methods related to our vector:</p>
+<div class="highlight"><pre><span class="n">cdef</span> <span class="n">class</span> <span class="n">Vector</span><span class="o">:</span>
+
+    <span class="n">cdef</span> <span class="n">nvector</span><span class="o">*</span> <span class="n">_vector</span>
+    <span class="n">cdef</span> <span class="n">nvector</span><span class="o">*</span> <span class="n">_aux_vector</span>
+
+    <span class="n">def</span> <span class="n">__cinit__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="kt">double</span> <span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="kt">double</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span><span class="o">:</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">_vector</span> <span class="o">=</span> <span class="n">nvector_new</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+
+<p>One main thing can be notated from this piece of code: the class statically define the variable _vector as 'cdef nvector* vector'. The reason to do this is that nvector is not an ordinary python object, but a Cython type, and it should be explicitly declared as so.</p>
+<h2>Tricky part: Convincing the compiler that Vector is indeed a Vector</h2>
+<p>Here a tricky part: when implementing the <em>__add__</em> function I got an error because the Cython compiler was not finding my _vector variable. The original code was more or less like this:</p>
+<div class="highlight"><pre><span class="n">cdef</span> <span class="n">class</span> <span class="n">Vector</span><span class="o">:</span>
+
+    <span class="n">cdef</span> <span class="n">nvector</span><span class="o">*</span> <span class="n">_vector</span>
+    <span class="n">cdef</span> <span class="n">nvector</span><span class="o">*</span> <span class="n">_aux_vector</span>
+
+    <span class="n">def</span> <span class="n">__cinit__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="kt">double</span> <span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="kt">double</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span><span class="o">:</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">_vector</span> <span class="o">=</span> <span class="n">nvector_new</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+
+    <span class="n">def</span> <span class="n">__add__</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span><span class="o">:</span>
+        <span class="n">left</span><span class="p">.</span><span class="n">_aux_vector</span> <span class="o">=</span> <span class="n">nvector_copy</span><span class="p">(</span><span class="n">left</span><span class="p">.</span><span class="n">_vector</span><span class="p">)</span>
+        <span class="n">nvector_add</span><span class="p">(</span> <span class="n">left</span><span class="p">.</span><span class="n">_aux_vector</span><span class="p">,</span> <span class="n">right</span><span class="p">.</span><span class="n">_vector</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="n">left</span><span class="p">.</span><span class="n">_aux_vector</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">left</span><span class="p">.</span><span class="n">_aux_vector</span><span class="p">.</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+
+<p>The code compiled, but when trying to use it I got:</p>
+<div class="highlight"><pre><span class="nl">AttributeError:</span> <span class="err">&#39;</span><span class="n">vector</span><span class="p">.</span><span class="n">Vector</span><span class="err">&#39;</span> <span class="n">object</span> <span class="n">has</span> <span class="n">no</span> <span class="n">attribute</span> <span class="err">&#39;</span><span class="n">_vector</span><span class="err">&#39;</span>
+</pre></div>
+
+
+<p>The reason is: as <em>_vector</em> is declared as <em>cdef</em>, it does not works as an ordinary python object. In fact, to access it we have to explicitly indicate to Cython compiler that my Vector object is indeed of type Vector. We can do it in two different ways: casting our <em>left</em> and <em>right</em> variables to Vector:</p>
+<div class="highlight"><pre><span class="nx">def</span> <span class="nx">__add__</span><span class="p">(</span><span class="nb">left</span><span class="p">,</span> <span class="nb">right</span><span class="p">):</span>
+    <span class="p">(</span><span class="o">&lt;</span><span class="nx">Vector</span><span class="o">&gt;</span><span class="nb">left</span><span class="p">)</span><span class="bp">.</span><span class="nx">_aux_vector</span> <span class="o">=</span>  <span class="nx">nvector_copy</span><span class="p">((</span><span class="o">&lt;</span><span class="nx">Vector</span><span class="o">&gt;</span><span class="nb">left</span><span class="p">)</span><span class="bp">.</span><span class="nx">_vector</span><span class="p">)</span>
+    <span class="nx">nvector_add</span><span class="p">(</span> <span class="p">(</span><span class="o">&lt;</span><span class="nx">Vector</span><span class="o">&gt;</span><span class="nb">left</span><span class="p">)</span><span class="bp">.</span><span class="nx">_aux_vector</span><span class="p">,</span> <span class="p">(</span><span class="o">&lt;</span><span class="nx">Vector</span><span class="o">&gt;</span><span class="nb">right</span><span class="p">)</span><span class="bp">.</span><span class="nx">_vector</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="nx">Vector</span><span class="p">((</span><span class="o">&lt;</span><span class="nx">Vector</span><span class="o">&gt;</span><span class="nb">left</span><span class="p">)</span><span class="bp">.</span><span class="nx">_aux_vector.x</span><span class="p">,</span> <span class="p">(</span><span class="o">&lt;</span><span class="nx">Vector</span><span class="o">&gt;</span><span class="nb">left</span><span class="p">)</span><span class="bp">.</span><span class="nx">_aux_vector.y</span><span class="p">)</span>
+</pre></div>
+
+
+<p>or adding the type of the variables in our __add__ method signature:</p>
+<div class="highlight"><pre><span class="n">def</span> <span class="n">__add__</span><span class="p">(</span><span class="n">Vector</span> <span class="n">left</span><span class="p">,</span> <span class="n">Vector</span> <span class="n">right</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">left</span><span class="p">.</span><span class="n">_aux_vector</span> <span class="o">=</span>  <span class="n">nvector_copy</span><span class="p">(</span><span class="n">left</span><span class="p">.</span><span class="n">_vector</span><span class="p">)</span>
+    <span class="n">nvector_add</span><span class="p">(</span>  <span class="n">left</span><span class="p">.</span><span class="n">_aux_vector</span><span class="p">,</span> <span class="n">right</span><span class="p">.</span><span class="n">_vector</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="n">left</span><span class="p">.</span><span class="n">_aux_vector</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">left</span><span class="p">.</span><span class="n">_aux_vector</span><span class="p">.</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Although the second way is cleaner, it doesn't fits in situations when the same method might receive different operands type. For example, for the <em>__mul__</em> method, we overload the operator * to operates both cross product (not yet implemented) and do the multiplication from a vector to an integer/float. In those situations, the variables passed to the method <em>__mul__</em> might by either a double, an int or a Vector object. Our solution for this case is not to specify the type in the method signature, but to sxplicitly cast it in our code:</p>
+<div class="highlight"><pre><span class="nx">def</span> <span class="nx">__mul__</span><span class="p">(</span><span class="nb">left</span><span class="p">,</span> <span class="nb">right</span><span class="p">):</span>
+
+    <span class="k">if</span> <span class="nx">isinstance</span><span class="p">(</span><span class="nb">left</span><span class="p">,</span> <span class="p">(</span><span class="nx">int</span><span class="p">,</span> <span class="nx">float</span><span class="p">))</span> <span class="p">^</span> <span class="nx">isinstance</span><span class="p">(</span><span class="nb">right</span><span class="p">,</span> <span class="p">(</span><span class="nx">int</span><span class="p">,</span> <span class="nx">float</span><span class="p">)):</span>
+        <span class="vi">#lets</span> <span class="nx">put</span> <span class="nx">int</span><span class="p">/</span><span class="nx">float</span> <span class="nx">at</span> <span class="nb">right</span> <span class="nx">side</span>
+        <span class="k">if</span> <span class="nx">isinstance</span><span class="p">(</span><span class="nb">left</span><span class="p">,</span> <span class="p">(</span><span class="nx">int</span><span class="p">,</span><span class="nx">float</span><span class="p">)):</span>
+            <span class="nb">right</span><span class="p">,</span> <span class="n">left</span> <span class="o">=</span> <span class="nb">left</span><span class="p">,</span> <span class="nb">right</span>
+        <span class="k">return</span> <span class="p">(</span><span class="o">&lt;</span><span class="nx">Vector</span><span class="o">&gt;</span><span class="nb">left</span><span class="p">)</span><span class="bp">.</span><span class="nx">mul</span><span class="p">(</span><span class="nb">right</span><span class="p">)</span> <span class="vi">#explicitly</span> <span class="nx">casting</span>
+
+    <span class="nx">elif</span> <span class="nx">isinstance</span><span class="p">(</span><span class="nb">right</span><span class="p">,</span> <span class="nx">Vector</span><span class="p">)</span> <span class="ow">and</span> <span class="nx">isinstance</span><span class="p">(</span><span class="nb">left</span><span class="p">,</span> <span class="nx">Vector</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="o">&lt;</span><span class="nx">Vector</span><span class="o">&gt;</span><span class="nb">left</span><span class="p">)</span><span class="bp">.</span><span class="nx">cross</span><span class="p">(</span><span class="nb">right</span><span class="p">)</span> <span class="vi">#explicitly</span> <span class="nx">casting</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nx">NotImplemented</span>
+</pre></div>
+
+
+<p>That's all so far. The full code can be visualized in the <a href="https://github.com/alvesjnr/nature-of-code">Github repository</a>. The current version of <em>vector.pyx</em> can be found at <a href="https://github.com/alvesjnr/nature-of-code/blob/7d6ef32caa5519878ddac1a90470953439e3e409/src/vector.pyx">here</a> <strong>Warning: This is a permalink. All possible fixes will not be applied to the code at in link</strong>. I'll continue to implement this first chapter and a next post will be done as far as I get my hands on the second chapter.</p>
+<p>I appreciate your curiosity :)</p>
+    </div><!-- /.entry-content -->
+    <div class="comments">
+      <h2>Comments !</h2>
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        var disqus_shortname = "myblogmyrules";
+        var disqus_identifier = "simulating-natural-process-01.html";
+        var disqus_url = "http://alvesjnr.github.io/simulating-natural-process-01.html";
+        (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://myblogmyrules.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+    </div>
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://www.python.org.br/wiki">Python Brasil</a></li>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="http://www.github.com/alvesjnr">Github</a></li>
+                            <li><a href="http://www.bitbucket.org/alvesjnr">Bitbucket</a></li>
+                            <li><a href="http://www.facebook.com/alvesjnr">Facebook</a></li>
+                            <li><a href="http://www.twitter.com/alvesjnr">Twitter</a></li>
+                            <li><a href="mailto:alvesjunior.antonio@gmail.com">E-Mail</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
