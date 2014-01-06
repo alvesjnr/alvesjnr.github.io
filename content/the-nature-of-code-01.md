@@ -6,7 +6,7 @@ Slug: simulating-natural-process-01
 Author: Antonio Ribeiro
 Summary: Updating informations about th e project: implementing basic vector arithmetic
 
-I implemented the first half of the codes discussed in the first chapter of [The Nature of Code](http://natureofcode.com). Mostly of the time was spent learning Cython, instead of actually programing.
+I implemented the first half of the codes discussed in the first chapter of [The Nature of Code](http://natureofcode.com). Mostly of the time was spent learning Cython, instead of actually programing, so I think that the second half of the code wouldn't take more than an hour to be implemented.
 
 The code is available at my [Github repository](https://github.com/alvesjnr/nature-of-code) for this project. The main three files so far are:
 
@@ -16,23 +16,21 @@ nvector_vector.c - Logical implementation of all operations
 vector.pyx - Binding to Python
 ```
 
-All the logic is implemented in the *nvector_vector.c* file. As the logic on basic vetors operation (dot and cross multiplication, addition, subtraction, mudule, etc.) are pretty straightforward, I'll not discuss this implementation at this point.
+All the logic is implemented in the *nvector_vector.c* file. As the logic on basic vetors operation (dot and cross multiplication, addition, subtraction, mudule, etc.) are pretty straightforward, I'll not discuss this implementation at this point. The file *vector.pyx* is a Cython code that binds the C implementation to Python, providing a Python module after compiled (vector.so). Lets focus on this file.
 
-The file *vector.pyx* is a Cython code that binds the C implementation to Python, providing a Python module after compiled (vector.so). Lets focus on this file.
+My goal when creating a python binding is not just translating the C functions to be called by a Python code. Actually what I have in mind is to write a Python version of the same code, as much *pythonic* as possible.
 
-My goal when creating a python binding is not just translating the C functions to be called by a Python code. Actually what I have in mind is to write a Python version of the same code as much *pythonic* as possible.
-
-A C code has an explicitly distinction between the data and the logic. As you can see in *nvector_vector.c*, our data is represented by a *struct* and all the relevant operations are effectuated by functions which receives our data vector (struct) as parameter. That's how we code in C, but that's not how we do in Python.
+A C code has an explicitly distinction between the data and the logic. As you can see in *nvector_vector.c*, our data is represented by a *struct* and all the relevant operations are effectuated by functions that receives our data vector (struct) as a parameter. That's how we code in C, but that's not how we do it in Python.
 
 When coding in Python, an object oriented approach is more convenient. Our vector would be no longer only a data container, but a full object which contains both our data and the operations over this data (our methods). This way, operations as addition, multiplications, etc. would no longer be executed by external function (as in C) but by the vector object itself.
 
 That said, lets start coding our Python equivalent of *nvector_vector.c*. To do this we will use a third language (neither C nor Python): [Cython](http://www.cython.org/). Cython is a superset of Python, which means that, at least in theory, all Python code is valid as a Cython code. Also Cython provides us a lot of extra resources. In special for us at this project is the possibility of talk to C libraries.
 
-So, the very first thing we do in Cython in this project is to *import* our C function. At the very beginning of the code (*vector.pyx*) we have:
+So, the very first thing we do in Cython on this project is to *import* our C functions. At the very beginning of the code (*vector.pyx*) we have:
 
     cdef extern from "nvector.h":
 
-It starts a block of code where are declared all the extern functions/data structures that we are importing from our C library:
+It starts a bloc of code where are declared all the extern functions/data structures that we are importing from our C library:
 
     cdef extern from "nvector.h":
 
