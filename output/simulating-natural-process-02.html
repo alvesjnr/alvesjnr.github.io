@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Simulating Natural Systems - Part 2</title>
+        <link rel="stylesheet" href="http://alvesjnr.github.io/theme/css/main.css" />
+
+            
+    <script type= "text/javascript">
+        var s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.src = 'https:' == document.location.protocol ? 'https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js' : 'http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'; 
+        s[(window.opera ? "innerHTML" : "text")] =
+            "MathJax.Hub.Config({" + 
+            "    config: ['MMLorHTML.js']," + 
+            "    jax: ['input/TeX','input/MathML','output/HTML-CSS','output/NativeMML']," +
+            "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," + 
+            "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+            "    tex2jax: { " +
+            "        inlineMath: [ ['$','$'] ], " +
+            "        displayMath: [ ['$$','$$'] ]," +
+            "        processEscapes: true }, " +
+            "    'HTML-CSS': { " +
+            "        styles: { '.MathJax .mo, .MathJax .mi': {color: 'black ! important'}} " +
+            "    } " +
+            "}); ";
+        (document.body || document.getElementsByTagName('head')[0]).appendChild(s);
+    </script>
+
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://alvesjnr.github.io/">My Blog, My Rules. </a></h1>
+                <nav><ul>
+                    <li><a href="http://alvesjnr.github.io/category/math.html">Math</a></li>
+                    <li class="active"><a href="http://alvesjnr.github.io/category/simulation.html">Simulation</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="http://alvesjnr.github.io/simulating-natural-process-02.html" rel="bookmark"
+           title="Permalink to Simulating Natural Systems - Part 2">Simulating Natural Systems - Part 2</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2014-01-07T14:00:00">
+                Tue 07 January 2014
+        </abbr>
+
+        <address class="vcard author">
+                By <a class="url fn" href="http://alvesjnr.github.io/author/antonio-ribeiro.html">Antonio Ribeiro</a>
+        </address>
+<p>In <a href="http://alvesjnr.github.io/category/simulation.html">Simulation</a>. </p>
+<p>tags: <a href="http://alvesjnr.github.io/tag/simulation.html">simulation</a><a href="http://alvesjnr.github.io/tag/programming.html">programming</a><a href="http://alvesjnr.github.io/tag/cython.html">Cython</a><a href="http://alvesjnr.github.io/tag/natureofcode.html">NatureOfCode</a></p>
+</footer><!-- /.post-info -->      <p>This post is part of a series. Please check all the previous posts before continuing: <a href="tag/natureofcode.html">The Nature of Code series</a></p>
+<p>This will be a very short post. I just pushed to the repository the latest version of my Python API to <em>nvector.c</em>. I finished implementing the extra functions (see full list of available function in the original <em>nvector.h</em> file).</p>
+<p>I also added properties behavior to <em>x</em>, <em>y</em> and <em>z</em> components in the <em>Vector</em> class. With this, we can access (and modify) those components direct from the <em>Vector</em> object as they were instance attributes:</p>
+<div class="highlight"><pre><span class="n">from</span> <span class="n">vector</span> <span class="n">import</span> <span class="n">Vector</span>
+
+<span class="n">k</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">print</span> <span class="n">v</span><span class="p">.</span><span class="n">x</span>
+<span class="cp"># 1</span>
+<span class="n">v</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">print</span> <span class="n">v</span><span class="p">.</span><span class="n">x</span>
+<span class="cp"># 10</span>
+</pre></div>
+
+
+<p>I did this using python <em>property</em> builtin:</p>
+<div class="highlight"><pre><span class="n">cdef</span> <span class="n">class</span> <span class="n">Vector</span><span class="o">:</span>
+
+    <span class="n">cdef</span> <span class="n">nvector</span><span class="o">*</span> <span class="n">_vector</span>
+
+    <span class="err">#</span><span class="p">(...)</span>
+
+    <span class="n">def</span> <span class="n">getx</span><span class="p">(</span><span class="n">Vector</span> <span class="n">self</span><span class="p">)</span><span class="o">:</span>
+        <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="n">_vector</span><span class="p">.</span><span class="n">x</span>
+
+    <span class="n">def</span> <span class="n">setx</span><span class="p">(</span><span class="n">Vector</span> <span class="n">self</span><span class="p">,</span> <span class="kt">float</span> <span class="n">x</span><span class="p">)</span><span class="o">:</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">_vector</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">property</span><span class="p">(</span><span class="n">getx</span><span class="p">,</span> <span class="n">setx</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;The &#39;x&#39; compoenent of the vector&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>This give us access to the inner elements of our struct <em>_vector</em> without having to explicitly access the struct every time. For more informations about Python property check the <a href="http://docs.python.org/2/library/functions.html#property">Python Documentation</a>.</p>
+<p>The current version of <em>vector.pyx</em> can be found <a href="https://github.com/alvesjnr/nature-of-code/blob/ec7194dbca5d98c80173d2eff72fa86598b5be1f/src/vector.pyx">here</a> <strong>Warning: permalink</strong></p>
+<p>I appreciate your curiosity :)</p>
+    </div><!-- /.entry-content -->
+    <div class="comments">
+      <h2>Comments !</h2>
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        var disqus_shortname = "myblogmyrules";
+        var disqus_identifier = "simulating-natural-process-02.html";
+        var disqus_url = "http://alvesjnr.github.io/simulating-natural-process-02.html";
+        (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://myblogmyrules.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+    </div>
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://www.python.org.br/wiki">Python Brasil</a></li>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="http://www.github.com/alvesjnr">Github</a></li>
+                            <li><a href="http://www.bitbucket.org/alvesjnr">Bitbucket</a></li>
+                            <li><a href="http://www.facebook.com/alvesjnr">Facebook</a></li>
+                            <li><a href="http://www.twitter.com/alvesjnr">Twitter</a></li>
+                            <li><a href="mailto:alvesjunior.antonio@gmail.com">E-Mail</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
