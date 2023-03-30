@@ -14,7 +14,7 @@ layout: default
   {% for post in site.posts %}
     <div class="post">
       <a href="/astrophotos{{ post.url }}">
-        <img src="{{ post.photo }}" alt="{{ post.title }}" />
+        <img src="{{ post.photo }}.thumbnail.jpg" alt="{{ post.title }}" />
         <h2>{{ post.title }}</h2>        
       </a>
     </div>

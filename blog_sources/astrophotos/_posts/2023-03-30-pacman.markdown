@@ -4,7 +4,7 @@ title: The Pacman Nebulae
 date: 2023-03-30 12:00:00 +0100
 author: Antonio Ribeiro
 tags: [dualband, osc, 80mm, refractor]
-photo: /astrophotos/assets/images/pacman.jpg
+photo: /astrophotos/assets/images/pacman
 ---
 
-[ ![{{page.title}}]({{page.photo}}) ]({{page.photo}})
+[![{{page.title}}]({{page.photo}}.jpg)]({{page.photo}}.jpg)
