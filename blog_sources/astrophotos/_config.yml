@@ -28,6 +28,7 @@ baseurl: "/astrophotos" # the subpath of your site, e.g. /blog
 url: "https://alvesjnr.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: alvesjnr
 github_username:  alvesjnr
+mastodon_username: mas.to/@aribeiro
 
 # Build settings
 theme: minima
