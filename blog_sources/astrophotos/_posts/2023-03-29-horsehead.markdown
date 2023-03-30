@@ -7,4 +7,4 @@ tags: [dualband, osc, 80mm, refractor]
 photo: /astrophotos/assets/images/hh.jpg
 ---
 
-![image tooltip here]({{page.photo}})
+[![{{page.title}}]({{page.photo}})]({{page.photo}})
