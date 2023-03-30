@@ -6,7 +6,7 @@
 # ---
 
 # ---
-# layout: default
+layout: default
 # title: My Blog
 ---
 
@@ -39,7 +39,7 @@
 
   .post h2 {
     position: absolute;
-    bottom: 0;
+    bottom: 10;
     left: 0;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.8);
@@ -47,7 +47,7 @@
     padding: 10px;
     margin: 0;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 0.8rem;
     font-weight: 400;
     text-decoration: none;
   }
