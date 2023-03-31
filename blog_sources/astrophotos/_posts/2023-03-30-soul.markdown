@@ -1,10 +1,10 @@
 ---
 layout: post
-title: The Pacman Nebulae
-date: 2023-03-30 12:00:00 +0100
+title: The Soul Nebulae in HOO
+date: 2023-03-30 09:00:00 +0100
 author: Antonio Ribeiro
 tags: [dualband, osc, 80mm, refractor]
-photo: /astrophotos/assets/images/pacman
+photo: /astrophotos/assets/images/soul
 ---
 
 [![{{page.title}}]({{page.photo}}.jpg)]({{page.photo}}.jpg)

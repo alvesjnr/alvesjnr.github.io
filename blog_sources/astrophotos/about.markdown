@@ -4,15 +4,10 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+Astrophotography is one of my hobbies. It combines a few of my passions such as Physics (or astronomy, to be precise), optics (I have a Ph.D. in Photonics) and data processing, which I use heavilly in the postprocessing of my photos.
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+All photos seen here taken by me, ususally from my backyard.
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+I'm shooting with either a 80mm f6 triplet or a 6" RC. At the time this text was written, my camera was a ZWO 533mc and my mount an iOptron gem28.
 
-
-[jekyll-organization]: https://github.com/jekyll
+My postprocessing is done with a combination of Pixinsight and custom made scripts, usually written in Python, but sometimes in Rust just for the fun.
